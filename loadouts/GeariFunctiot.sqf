@@ -6,10 +6,10 @@ Author:
     Tuntematon
 
 Muokattu
-	22.12.2019
+	16.1.2020
 ---------------------------------------------------------------------------- */
 //Muuta numeroa jos muokkaan scriptiä niin ettei vanhat enään toimi.
-_GeariFunctiot_Versio = 4;
+_GeariFunctiot_Versio = 4.1;
 
 
 if (_unit isKindof "Man") then {
@@ -80,7 +80,7 @@ _tun_fnc_arraytolower = {
 _tun_fnc_magazinearray = {
 	params[ [ "_weapon", currentWeapon _unit, [ "" ] ] ];
 
-	_weapon = primaryWeapon _unit;
+	//_weapon = primaryWeapon _unit;
 	_magazines = [];
 
 	{
