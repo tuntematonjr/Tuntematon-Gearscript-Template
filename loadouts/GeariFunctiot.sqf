@@ -6,10 +6,10 @@ Author:
     Tuntematon
 
 Muokattu
-	16.1.2020
+	26.1.2020
 ---------------------------------------------------------------------------- */
 //Muuta numeroa jos muokkaan scriptiä niin ettei vanhat enään toimi.
-_GeariFunctiot_Versio = 4.1;
+_GeariFunctiot_Versio = 5;
 
 
 if (_unit isKindof "Man") then {
@@ -65,7 +65,9 @@ _fnc_BUMaddweapons = {
 	//Params [unit,[ListOfWeapons] call _fnc_BUMaddweapons;
 
 	params ["_unit","_weapons"];
-	{_unit addweapon _x;} Foreach _weapons;
+	{
+		_unit addweapon _x;
+	} foreach _weapons;
 };
 
 _tun_fnc_arraytolower = {
@@ -77,26 +79,6 @@ _tun_fnc_arraytolower = {
 	_newarray
 };
 
-_tun_fnc_magazinearray = {
-	params[ [ "_weapon", currentWeapon _unit, [ "" ] ] ];
-
-	//_weapon = primaryWeapon _unit;
-	_magazines = [];
-
-	{
-		{
-			_magazines append getArray( _x );
-		}forEach configProperties[ configFile >> "CfgMagazineWells" >> _x ];
-	}count getArray( configFile >> "CfgWeapons" >> _weapon >> "magazineWell" );
-
-	_compatibleMagazines = getArray( configFile >> "CfgWeapons" >> _weapon >> "magazines" );
-	_magazines append _compatibleMagazines;
-	_magazines = _magazines arrayIntersect _magazines;
-	_magazines = _magazines apply{ toLower _x };
-	_magazines
-};
-
-
 _fnc_TUNaddmagazines = {
 	//Adds list of magazines and items
 	//Params [_unit,[[MagazineClassname,count],[MagazineClassname,count],...]] call _fnc_TUNaddmagazines;
@@ -105,22 +87,34 @@ _fnc_TUNaddmagazines = {
 
 	private _haveGL = false;
 	private _glAmmo = [];
-	private _primaryAmmo = [primaryWeapon _unit] call _tun_fnc_magazinearray;
-	private _secondaryAmmo = [secondaryWeapon _unit] call _tun_fnc_magazinearray;
-	private _handgunAmmo = [handgunWeapon _unit] call _tun_fnc_magazinearray;
+	private _primaryAmmo = [];
+	private _secondaryAmmo = [];
+	private _handgunAmmo = [];
 
+	if (primaryWeapon _unit != "") then {
+		_primaryAmmo = [primaryWeapon _unit] call CBA_fnc_compatibleMagazines;
 
-	/*_primaryAmmo = [_primaryAmmo] call _tun_fnc_arraytolower;
-	_secondaryAmmo = [_secondaryAmmo] call _tun_fnc_arraytolower;
-	_handgunAmmo = [_handgunAmmo] call _tun_fnc_arraytolower;*/
+		{
+			if ("UGL_F" in ([(configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> _x),true] call BIS_fnc_returnParents)) then {
+				_glAmmo = getArray (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> _x >> "magazines");
+				_haveGL = true;
+			};
+			if (_haveGL) exitWith { _glAmmo = [_glAmmo] call _tun_fnc_arraytolower; };
+		} forEach GetArray (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> "muzzles");
 
-	{
-		if ("UGL_F" in ([(configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> _x),true] call BIS_fnc_returnParents)) then {
-			_glAmmo = getArray (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> _x >> "magazines");
-			_haveGL = true;
-		};
-		if (_haveGL) exitWith { _glAmmo = [_glAmmo] call _tun_fnc_arraytolower; };
-	} forEach getArray (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> "muzzles");
+		_primaryAmmo = [_primaryAmmo] call _tun_fnc_arraytolower;
+	};
+
+	if (secondaryWeapon _unit != "") then {
+		_secondaryAmmo = [secondaryWeapon _unit] call CBA_fnc_compatibleMagazines;
+		_secondaryAmmo = [_secondaryAmmo] call _tun_fnc_arraytolower;
+	};
+
+	if (handgunWeapon _unit != "") then {
+		_handgunAmmo = [handgunWeapon _unit] call CBA_fnc_compatibleMagazines;
+		_handgunAmmo = [_handgunAmmo] call _tun_fnc_arraytolower;
+	};
+
 
 	{
 		private ["_item", "_count"];
@@ -128,7 +122,7 @@ _fnc_TUNaddmagazines = {
 		_count = _x select 1;
 
 		if (isClass (configFile >> "CFGMagazines" >> _item)) then {
-			if (_item in (_primaryAmmo + _glAmmo) && _count > 0) then  { //Jos on primary weapon
+			if (_item in (_primaryAmmo + _glAmmo) && _count > 0) then { //Jos on primary weapon
 				if (_item in _glAmmo && _haveGL && ({tolower _x in _glAmmo} count (primaryWeaponMagazine _unit) == 0)) then {
 					_unit addPrimaryWeaponItem _item;
 					_count = _count - 1;
@@ -183,9 +177,7 @@ _fnc_BUMCheckAddBackpack = {
 
 };
 
-
-
-fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
+_fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
 
 	params ["_unit", "_items"];
 	{
