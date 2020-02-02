@@ -180,6 +180,11 @@ _fnc_BUMCheckAddBackpack = {
 _fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
 
 	params ["_unit", "_items"];
+	if (_unit == player) then
+	{
+		ok = _items;
+		ok1 = true;
+	};
 	{
 		switch toLower (_x select 1) do {
 			case toLower "primary": {
@@ -201,4 +206,8 @@ _fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
 			};
 		};
 	} forEach _items;
+};
+
+if (_VaadittuFunctio_versio < 5) then {
+	fnc_TUNaddWeaponItem = _fnc_TUNaddWeaponItem;
 };
