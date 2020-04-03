@@ -20,7 +20,7 @@ if (_unit isKindof "Man") then {
 	_unit removeweapon "ItemGPS";
 
 	_unit linkItem "itemMap";
-	_unit linkItem "itemCompas";
+	_unit linkItem "itemCompass";
 	_unit linkItem "itemWatch";
 
 
