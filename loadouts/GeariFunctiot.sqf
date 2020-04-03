@@ -6,7 +6,7 @@ Author:
     Tuntematon
 
 Muokattu
-	26.1.2020
+	3.4.2020
 ---------------------------------------------------------------------------- */
 //Muuta numeroa jos muokkaan scriptiä niin ettei vanhat enään toimi.
 _GeariFunctiot_Versio = 5;
@@ -204,6 +204,6 @@ _fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
 	} forEach _items;
 };
 
-if (_VaadittuFunctio_versio < 5) then {
+if (_VaadittuFunctio_versio <= 5) then {
 	fnc_TUNaddWeaponItem = _fnc_TUNaddWeaponItem;
 };
