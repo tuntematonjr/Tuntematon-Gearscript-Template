@@ -3,6 +3,17 @@
 	KaikkienLippaat = [];
 	KaikkiLisavarusteet = [];
 
+Tun_fnc_arraytolower = {
+	params ["_array"];
+	private _newarray = [];
+	{
+		_newarray pushBack (toLower _x);
+	} forEach _array;
+	_newarray
+};
+
+
+
 TUN_fnc_Primary = {
 	_Lippaat = [];
 	_LippaatLista = [];
@@ -11,17 +22,21 @@ TUN_fnc_Primary = {
 	_EiAsetta = "";
 	_EiLippaita = "";
 	_EiVarusteita = "";
+	_haveGL = false;
 	_ase = getText (configFile >> "CfgWeapons" >> (primaryWeapon player) >> "baseWeapon");
 	if (_ase == "") then  {_ase = primaryWeapon player};
 
 	{
-		if ("UGL_F" in ([(configFile >> "CfgWeapons" >> _ase >> _x),true] call BIS_fnc_returnParents)) then
-		{
-			_kranaatit = getArray (configFile >> "CfgWeapons" >> _ase >> _x >> "magazines")
+		if ("UGL_F" in ([(configFile >> "CfgWeapons" >> (primaryWeapon player) >> _x),true] call BIS_fnc_returnParents)) then {
+			_kranaatit = getArray (configFile >> "CfgWeapons" >> (primaryWeapon player) >> _x >> "magazines");
+			_haveGL = true;
 		};
-	} forEach getArray (configFile >> "CfgWeapons" >> _ase >> "muzzles");
+		if (_haveGL) exitWith { _kranaatit = [_kranaatit] call Tun_fnc_arraytolower; };
+	} forEach GetArray (configFile >> "CfgWeapons" >> (primaryWeapon player) >> "muzzles");
 
-	_kaikkilippaat = call compile toLower str(getArray (configFile >> "CfgWeapons" >> (_ase) >> "magazines") + _kranaatit);
+	_primaryAmmo = [primaryWeapon player] call CBA_fnc_compatibleMagazines;
+	_primaryAmmo = [_primaryAmmo] call Tun_fnc_arraytolower;
+	_kaikkilippaat = _primaryAmmo + _kranaatit;
 
 	{
 		_lipas = toLower _x;
@@ -56,12 +71,14 @@ TUN_fnc_Secondary = {
 	_EiAsetta = "";
 	_EiLippaita = "";
 	_EiVarusteita = "";
+	_sopivatLippaat = [secondaryWeapon player] call CBA_fnc_compatibleMagazines;
+	_sopivatLippaat = [_sopivatLippaat] call Tun_fnc_arraytolower;
 	_ase = getText (configFile >> "CfgWeapons" >> (secondaryWeapon player) >> "baseWeapon");
 	if (_ase == "") then  {_ase = secondaryWeapon player};
 
 
 	{
-		if (_x in getArray (configFile >> "CfgWeapons" >> _ase >> "magazines") && !(_x in _LippaatLista) && !(_x == "ACE_PreloadedMissileDummy")) then {
+		if (tolower _x in _sopivatLippaat && !(_x in _LippaatLista) && !(_x == "ACE_PreloadedMissileDummy")) then {
 	 		_LippaatLista append [_x];
 	  		_Lippaat pushBack [_x,{_x in getArray (configFile >> "CFGWeapons" >> _ase >> "magazines")} count (magazines player + secondaryWeaponMagazine player)]
 	 	};
@@ -88,11 +105,13 @@ TUN_fnc_Handgun = {
 	_EiAsetta = "";
 	_EiLippaita = "";
 	_EiVarusteita = "";
+	_sopivatLippaat = [handgunWeapon player] call CBA_fnc_compatibleMagazines;
+	_sopivatLippaat = [_sopivatLippaat] call Tun_fnc_arraytolower;
 	_ase = getText (configFile >> "CfgWeapons" >> (handgunWeapon player) >> "baseWeapon");
 	if (_ase == "") then  {_ase = handgunWeapon player};
 
 	{
-		if (_x in getArray (configFile >> "CfgWeapons" >> _ase >> "magazines") && !(_x in _LippaatLista)) then {
+		if (tolower _x in _sopivatLippaat && !(_x in _LippaatLista)) then {
 	 		_LippaatLista append [_x];
 	  		_Lippaat pushBack [_x,{_x in getArray (configFile >> "CFGWeapons" >> _ase >> "magazines")} count (magazines player + handgunMagazine player)]
 	 	};
