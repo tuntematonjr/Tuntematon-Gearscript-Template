@@ -25,7 +25,7 @@ private ["_OrbatinSide", "_Radioit", "_Nightvision", "_VaadittuFunctio_versio", 
 ////////ASETUKSET////////
 /////////////////////////
 //Vaadittava gearifunctio versio
-_VaadittuFunctio_versio = 4;
+_VaadittuFunctio_versio = 6;
 
 //Geariscriptin polku
 _gearscript_path = "loadouts\Tyhja.sqf";
@@ -53,7 +53,7 @@ _item_NV = "ACE_NVG_Gen4";
 
 #include "GeariFunctiot.sqf"
 //Muokkaa tätä vastaamaan vaadittavaa gearifunctio tiedostoa
-if (_GeariFunctiot_Versio == _VaadittuFunctio_versio) then {player sideChat "Geariscripti vaatii udemman gearifunctiot.sqf"};
+if (_GeariFunctiot_Versio == _VaadittuFunctio_versio) then {ERROR_MSG("Geariscripti vaatii udemman gearifunctiot.sqf"); player sideChat "Geariscripti vaatii udemman gearifunctiot.sqf"};
 
 /////////////////////////
 ////////ASETUKSET////////
@@ -61,8 +61,8 @@ if (_GeariFunctiot_Versio == _VaadittuFunctio_versio) then {player sideChat "Gea
 
 
 
-_fnc_TUNaddBasicEquipment = { //PerusTavaroiden functio//
-	//Params [_unit, varusteet, kiikarit] call _fnc_TUNaddBasicEquipment;
+_TUN_fnc_addBasicEquipment = { //PerusTavaroiden functio//
+	//Params [_unit, varusteet, kiikarit] call _TUN_fnc_addBasicEquipment;
 
 	params ["_unit", ["_mode", ""], ["_kiikarit", ""]];
 	private ["_tavarat"];
@@ -103,7 +103,7 @@ _fnc_TUNaddBasicEquipment = { //PerusTavaroiden functio//
 	};
 
 	//Annetaan valitut tavarat
-	[_unit, _tavarat] Call _fnc_TUNaddmagazines;
+	[_unit, _tavarat] Call _TUN_fnc_addmagazines;
 
 	Switch toLower (_kiikarit) do {
 		Case toLower "kiikari": {
@@ -124,8 +124,8 @@ _fnc_TUNaddBasicEquipment = { //PerusTavaroiden functio//
 
 
 
-_fnc_BUMaddMedicalSupplies = {
-	//Params [unit, mode] call _fnc_BUMaddMedicalSupplies;
+_TUN_fnc_addMedicalSupplies = {
+	//Params [unit, mode] call _TUN_fnc_addMedicalSupplies;
 	params ["_unit", ["_mode", " "]];
 	private ["_supplies"];
 
@@ -133,28 +133,28 @@ _fnc_BUMaddMedicalSupplies = {
 
 		Case toLower "cls": {
 			_unit setVariable ["Ace_medical_medicClass", 1]; //Asettaa ace medikin tason
-			_supplies = [["ACE_adenosine",1],["ACE_morphine",12],["ACE_epinephrine",8],["ACE_elasticBandage",15],["adv_aceSplint_splint",12],["ACE_tourniquet",6],["ACE_bloodIV",8]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
+			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",2],["ACE_epinephrine",2],["ACE_adenosine",1],["ACE_splint",5],["ACE_bloodIV_500",3],["ACE_tourniquet",4]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
 		};
 
 		Case toLower "medic": {
 			_unit setVariable ["Ace_medical_medicClass", 2];//Asettaa ace medikin tason
-			_supplies = [["ACE_adenosine",1],["ACE_morphine",12],["ACE_epinephrine",8],["ACE_elasticBandage",15],["adv_aceSplint_splint",12],["ACE_tourniquet",6],["ACE_bloodIV",8]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
+			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",10],["ACE_epinephrine",10],["ACE_adenosine",3],["ACE_splint",5],["ACE_surgicalKit",1],["ACE_bloodIV",5],["ACE_bloodIV_500",3],["ACE_tourniquet",4]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
 		};
 
 		default {
 			_unit setVariable ["Ace_medical_medicClass", 0];//Asettaa ace medikin tason
-			_supplies = [["ACE_elasticBandage",4],["ACE_tourniquet",2],["ACE_morphine",1]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
+			_supplies = [["ACE_packingBandage",4],["ACE_tourniquet",2],["ACE_morphine",1],["ACE_splint",1]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
 		};
 	};
 
-	[_unit, _supplies] Call _fnc_TUNaddmagazines;
+	[_unit, _supplies] Call _TUN_fnc_addmagazines;
 };
 
 
-_fnc_TUNchangeWeapons = { //ASEFUNCTIO//
+_TUN_fnc_changeWeapons = { //ASEFUNCTIO//
 
 
-	//Kutsuminen [_unit, "ase", "sinko"] call _fnc_TUNchangeWeapons;
+	//Kutsuminen [_unit, "ase", "sinko"] call _TUN_fnc_changeWeapons;
 	private [ "_weapons", "_magazines","_weaponitems", "_suujarru", "_ase", "_tahtain"];
 	params ["_unit",["_weapon", ""],["_Singonvalinta", ""],["_Assistantti", ""]];
 	_weapons = [];
@@ -369,11 +369,11 @@ if (_Silencer) then {
 
 
 	if (count _weapons > 0) then {
-		[_unit, _weapons] Call _fnc_BUMaddweapons;
+		[_unit, _weapons] Call _TUN_fnc_addweapons;
 	};
 
 	if (count _magazines > 0) then {
-		[_unit, _magazines] Call _fnc_TUNaddmagazines;
+		[_unit, _magazines] Call _TUN_fnc_addmagazines;
 	};
 
 	if (count _weaponitems > 0) then {
@@ -382,9 +382,9 @@ if (_Silencer) then {
 };
 
 
-_fnc_TUNchangeClothes = { //VAATEFUNCTIO//
+_TUN_fnc_changeClothes = { //VAATEFUNCTIO//
 
-	//Kutsuminen [_unit, "puvunvalinta", "liivinvalinta", "repunvalinta"] call _fnc_TUNchangeClothes;
+	//Kutsuminen [_unit, "puvunvalinta", "liivinvalinta", "repunvalinta"] call _TUN_fnc_changeClothes;
 	//Katso vaihtoehdot alempaa case kohdasta. Käytä "" jos haluat defaultin.
 
 	params ["_unit", ["_kypara", ""], ["_puku", ""], ["_liivi", ""], ["_reppu", ""]];
@@ -551,21 +551,21 @@ _fnc_TUNchangeClothes = { //VAATEFUNCTIO//
 	};
 };
 /*
-//Vaate function muuttujat. _fnc_TUNchangeClothes
+//Vaate function muuttujat. _TUN_fnc_changeClothes
 _Tun_Kypara = ""; //Kypäränvalinta
 _Tun_Puku = ""; //Puvunvalinta
 _Tun_Liivi = ""; //Liivinvalinta
 _Tun_Reppu = ""; //Repunvalinta
 
-//Ase function muuttuja. _fnc_TUNchangeWeapons
+//Ase function muuttuja. _TUN_fnc_changeWeapons
 _Tun_Aseistus = ""; //Kiväärin valitna
 _Tun_Sinko = ""; //Singon valinta
 
-//Perusvaruste functio muutujat. _fnc_TUNaddBasicEquipment
+//Perusvaruste functio muutujat. _TUN_fnc_addBasicEquipment
 _Tun_Perustavarat = ""; //perustavaroiden valinta
 _Tun_Kiikari = ""; /Kiikarien valinta
 
-//Medikaali varuste functio. _fnc_BUMaddMedicalSupplies
+//Medikaali varuste functio. _TUN_fnc_addMedicalSupplies
 _Tun_Medikaali = "";
 
 */
@@ -1312,10 +1312,10 @@ if (_unit isKindof "Man") then {
 	};
 
 	//Kutsutaan varustefunctiot yksikölle.
-	[_unit, _Tun_Kypara, _Tun_Puku, _Tun_Liivi, _Tun_Reppu] call _fnc_TUNchangeClothes;
-	[_unit, _Tun_Aseistus, _Tun_Sinko, _Tun_Assistantti] call _fnc_TUNchangeWeapons;
-	[_unit, _Tun_Medikaali] Call _fnc_BUMaddMedicalSupplies;
-	[_unit, _Tun_Perustavarat, _Tun_Kiikari] call _fnc_TUNaddBasicEquipment;
+	[_unit, _Tun_Kypara, _Tun_Puku, _Tun_Liivi, _Tun_Reppu] call _TUN_fnc_changeClothes;
+	[_unit, _Tun_Aseistus, _Tun_Sinko, _Tun_Assistantti] call _TUN_fnc_changeWeapons;
+	[_unit, _Tun_Medikaali] Call _TUN_fnc_addMedicalSupplies;
+	[_unit, _Tun_Perustavarat, _Tun_Kiikari] call _TUN_fnc_addBasicEquipment;
 };
 
 

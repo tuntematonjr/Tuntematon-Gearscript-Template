@@ -9,7 +9,11 @@ Muokattu
 	3.4.2020
 ---------------------------------------------------------------------------- */
 //Muuta numeroa jos muokkaan scriptiä niin ettei vanhat enään toimi.
-_GeariFunctiot_Versio = 5;
+#define COMPONENT gearscript
+#define PREFIX Tun
+#include "\x\cba\addons\main\script_macros_common.hpp"
+
+_GeariFunctiot_Versio = 6;
 
 
 if (_unit isKindof "Man") then {
@@ -59,10 +63,10 @@ if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship
 };
 
 
-_fnc_BUMaddweapons = {
+_TUN_fnc_addweapons = {
 
 	//Adds weapons from list
-	//Params [unit,[ListOfWeapons] call _fnc_BUMaddweapons;
+	//Params [unit,[ListOfWeapons] call _TUN_fnc_addweapons;
 
 	params ["_unit","_weapons"];
 	{
@@ -70,7 +74,7 @@ _fnc_BUMaddweapons = {
 	} foreach _weapons;
 };
 
-_tun_fnc_arraytolower = {
+_TUN_fnc_arraytolower = {
 	params ["_array"];
 	private _newarray = [];
 	{
@@ -79,9 +83,9 @@ _tun_fnc_arraytolower = {
 	_newarray
 };
 
-_fnc_TUNaddmagazines = {
+_TUN_fnc_addmagazines = {
 	//Adds list of magazines and items
-	//Params [_unit,[[MagazineClassname,count],[MagazineClassname,count],...]] call _fnc_TUNaddmagazines;
+	//Params [_unit,[[MagazineClassname,count],[MagazineClassname,count],...]] call _TUN_fnc_addmagazines;
 
 	params ["_unit","_elements"];
 
@@ -99,20 +103,20 @@ _fnc_TUNaddmagazines = {
 				_glAmmo = getArray (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> _x >> "magazines");
 				_haveGL = true;
 			};
-			if (_haveGL) exitWith { _glAmmo = [_glAmmo] call _tun_fnc_arraytolower; };
+			if (_haveGL) exitWith { _glAmmo = [_glAmmo] call _TUN_fnc_arraytolower; };
 		} forEach GetArray (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> "muzzles");
 
-		_primaryAmmo = [_primaryAmmo] call _tun_fnc_arraytolower;
+		_primaryAmmo = [_primaryAmmo] call _TUN_fnc_arraytolower;
 	};
 
 	if (secondaryWeapon _unit != "") then {
 		_secondaryAmmo = [secondaryWeapon _unit] call CBA_fnc_compatibleMagazines;
-		_secondaryAmmo = [_secondaryAmmo] call _tun_fnc_arraytolower;
+		_secondaryAmmo = [_secondaryAmmo] call _TUN_fnc_arraytolower;
 	};
 
 	if (handgunWeapon _unit != "") then {
 		_handgunAmmo = [handgunWeapon _unit] call CBA_fnc_compatibleMagazines;
-		_handgunAmmo = [_handgunAmmo] call _tun_fnc_arraytolower;
+		_handgunAmmo = [_handgunAmmo] call _TUN_fnc_arraytolower;
 	};
 
 
@@ -166,18 +170,7 @@ _fnc_TUNaddmagazines = {
 	} Foreach _elements;
 };
 
-_fnc_BUMCheckAddBackpack = {
-
-	//Run before adding rockets, adds an Backpack if Unit does not have one already
-	//Params [unit,"BackpackClassName"] call _fnc_BUMCheckAddBackpack;
-
-	params ["_unit","_PackToAdd"];
-
-	If (Backpack _unit == "") then {_unit addbackpack _PackToAdd};
-
-};
-
-_fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
+_TUN_fnc_addWeaponItem = {  //aseiden tähtäimet jne.
 
 	params ["_unit", "_items"];
 
@@ -202,8 +195,4 @@ _fnc_TUNaddWeaponItem = {  //aseiden tähtäimet jne.
 			};
 		};
 	} forEach _items;
-};
-
-if (_VaadittuFunctio_versio <= 5) then {
-	fnc_TUNaddWeaponItem = _fnc_TUNaddWeaponItem;
 };
