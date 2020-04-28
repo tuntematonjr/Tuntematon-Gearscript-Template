@@ -133,7 +133,7 @@ _TUN_fnc_addMedicalSupplies = {
 
 		Case toLower "cls": {
 			_unit setVariable ["Ace_medical_medicClass", 1]; //Asettaa ace medikin tason
-			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",2],["ACE_epinephrine",2],["ACE_adenosine",1],["ACE_splint",5],["ACE_bloodIV_500",3],["ACE_tourniquet",4]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
+			_supplies = [["ACE_elasticBandage",10],["ACE_quikclot",10],["ACE_morphine",2],["ACE_epinephrine",2],["ACE_adenosine",1],["ACE_splint",4],["ACE_tourniquet",6]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
 		};
 
 		Case toLower "medic": {
