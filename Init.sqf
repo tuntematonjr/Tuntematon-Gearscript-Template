@@ -261,8 +261,9 @@ _unit addBackpack %9;
 PrimaryAse, SecondaryAse, HandgunAse, toString [13,10],str headgear player, str goggles player, str vest player, str uniform player, str _reppu, PistoolijaAse, _KaikkiLippaat, binocular player];
 };
 
-
-player addAction ["Kopioi gearit leikepöydälle", { [] spawn TUN_fnc_Kaikki; }];
+{
+	_x addAction ["Kopioi gearit leikepöydälle", { [] spawn TUN_fnc_Kaikki; }];
+} forEach allUnits;
 
 
 puvut = [];
