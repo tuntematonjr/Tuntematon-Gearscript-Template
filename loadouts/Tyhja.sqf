@@ -53,7 +53,7 @@ _item_NV = "ACE_NVG_Gen4";
 
 #include "GeariFunctiot.sqf"
 //Muokkaa tätä vastaamaan vaadittavaa gearifunctio tiedostoa
-if (_GeariFunctiot_Versio == _VaadittuFunctio_versio) then {ERROR_MSG("Geariscripti vaatii udemman gearifunctiot.sqf"); player sideChat "Geariscripti vaatii udemman gearifunctiot.sqf"};
+if (_GeariFunctiot_Versio < _VaadittuFunctio_versio) then {ERROR_MSG("Geariscripti vaatii udemman gearifunctiot.sqf");};
 
 /////////////////////////
 ////////ASETUKSET////////
