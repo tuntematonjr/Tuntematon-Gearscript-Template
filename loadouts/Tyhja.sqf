@@ -138,12 +138,12 @@ _TUN_fnc_addMedicalSupplies = {
 
 		Case toLower "medic": {
 			_unit setVariable ["Ace_medical_medicClass", 2];//Asettaa ace medikin tason
-			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",10],["ACE_epinephrine",10],["ACE_adenosine",3],["ACE_splint",5],["ACE_surgicalKit",1],["ACE_bloodIV",5],["ACE_bloodIV_500",3],["ACE_tourniquet",4]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
+			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",10],["ACE_epinephrine",10],["ACE_adenosine",3],["ACE_splint",5],["ACE_surgicalKit",1],["ACE_bloodIV",8],["ACE_bloodIV_500",5],["ACE_tourniquet",4]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
 		};
 
 		default {
 			_unit setVariable ["Ace_medical_medicClass", 0];//Asettaa ace medikin tason
-			_supplies = [["ACE_packingBandage",4],["ACE_tourniquet",2],["ACE_morphine",1],["ACE_splint",1]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
+			_supplies = [["ACE_packingBandage",7],["ACE_tourniquet",2],["ACE_morphine",1],["ACE_splint",1]]; //Tässä voit muutta mitä medicaali tavaroita kukin saa.
 		};
 	};
 
@@ -377,7 +377,7 @@ if (_Silencer) then {
 	};
 
 	if (count _weaponitems > 0) then {
-		[_unit, _weaponitems] Call fnc_TUNaddWeaponItem;
+		[_unit, _weaponitems] Call _TUN_fnc_addWeaponItem;
 	};
 };
 
