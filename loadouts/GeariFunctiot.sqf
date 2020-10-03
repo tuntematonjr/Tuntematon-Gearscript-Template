@@ -26,6 +26,7 @@ if (_unit isKindof "Man") then {
 	_unit linkItem "itemMap";
 	_unit linkItem "itemCompass";
 	_unit linkItem "itemWatch";
+	_unit addItem "ACE_MapTools";
 
 
 	if (_Radioit) then {_unit linkItem "TFAR_microdagr"; _unit linkItem "itemradio" } else {_unit removeweapon "itemradio"};

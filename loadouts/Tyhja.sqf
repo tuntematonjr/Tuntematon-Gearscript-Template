@@ -69,11 +69,11 @@ _TUN_fnc_addBasicEquipment = { //PerusTavaroiden functio//
 	Switch toLower (_mode) do {
 
 		Case toLower "johtaja": {
-			_tavarat = [["SmokeShell",2], ["SmokeShellGreen",2], ["HandGrenade",1]]; //Tässä voit muutta mitä perus tavaroita annetaan
+			_tavarat = [["SmokeShell",2], ["SmokeShellGreen",2], ["HandGrenade",1], ["ace_microdagr",1], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]]; //Tässä voit muutta mitä perus tavaroita annetaan
 		};
 
 		Case toLower "VaraJohtaja": {
-			_tavarat = [["SmokeShell",2], ["SmokeShellGreen",2], ["HandGrenade",1]];
+			_tavarat = [["SmokeShell",2], ["SmokeShellGreen",2], ["HandGrenade",1], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]];
 		};
 
 		Case toLower "kevyt": {
@@ -81,24 +81,23 @@ _TUN_fnc_addBasicEquipment = { //PerusTavaroiden functio//
 		};
 
 		Case toLower "Engineer": {
-			_tavarat = [["SmokeShell",4],["HandGrenade",1],["ACE_DefusalKit",1],["ACE_Clacker",1],["ToolKit",1],["ACE_wirecutter",1],["DemoCharge_Remote_Mag",3],["SatchelCharge_Remote_Mag",0]];
+			_tavarat = [["SmokeShell",4],["HandGrenade",1],["ACE_DefusalKit",1],["ACE_Clacker",1],["ToolKit",1],["ACE_wirecutter",1],["DemoCharge_Remote_Mag",3],["SatchelCharge_Remote_Mag",0], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]];
 		};
 
 		Case toLower "Explosive": {
-			_tavarat = [["SmokeShell",2],["HandGrenade",1]];
+			_tavarat = [["SmokeShell",2],["HandGrenade",1], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]];
 		};
 
 		Case toLower "Breach": {
-			_tavarat = [["SmokeShell",2],["HandGrenade",1],["ACE_DefusalKit",1],["ACE_Clacker",1],["DemoCharge_Remote_Mag",2]];
+			_tavarat = [["SmokeShell",2],["HandGrenade",1],["ACE_DefusalKit",1],["ACE_Clacker",1],["DemoCharge_Remote_Mag",2], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]];
 		};
 
 		Case toLower "Medic": {
-			_tavarat = [["SmokeShell",6],["HandGrenade",1]];
+			_tavarat = [["SmokeShell",6], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]];
 		};
 
-
 		default { //Vakio romut
-			_tavarat = [["SmokeShell",2],["HandGrenade",1]];
+			_tavarat = [["SmokeShell",2],["HandGrenade",1], ["ACE_EntrenchingTool",1], ["ACE_MapTools",1]];
 		};
 	};
 
@@ -357,11 +356,11 @@ if (_Silencer) then {
 		};
 
 		case toLower "AR": { //Kevyet konekiväärit (M249, RPK, M27)
-			_magazines append [["rhsusf_100Rnd_556x45_soft_pouch",4]];
+			_magazines append [["",4]];
 		};
 
 		case toLower "MG": { //Raskaammat konekiväärit (PKM, PKP, M240) Natossa 7.62x51, muilla 7.62x54/53
-			_magazines append [["rhsusf_50Rnd_762x51",10]];
+			_magazines append [["",10]];
 		};
 
 		default {};//Tyhjänä ei ajaa tämä eli ei anna mitään.
@@ -442,7 +441,8 @@ _TUN_fnc_changeClothes = { //VAATEFUNCTIO//
 	switch toLower (_puku) do {
 
 		Case toLower "Johtaja": {
-					};
+
+		};
 
 		Case toLower "Sl": {
 
@@ -593,7 +593,7 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -611,7 +611,7 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -629,7 +629,7 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -647,7 +647,7 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "laser";
 			_Tun_Medikaali = "";
 		};
 
@@ -665,7 +665,7 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -683,7 +683,7 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -699,7 +699,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "mg";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -717,7 +717,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "mg1";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -737,11 +737,11 @@ if (_unit isKindof "Man") then {
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "mg";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -755,11 +755,11 @@ if (_unit isKindof "Man") then {
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "mg1";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -775,7 +775,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "AR";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -793,7 +793,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "AR1";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -813,11 +813,11 @@ if (_unit isKindof "Man") then {
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "AR";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -831,11 +831,11 @@ if (_unit isKindof "Man") then {
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "AR1";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -851,7 +851,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "Gl";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -896,9 +896,9 @@ if (_unit isKindof "Man") then {
 			_Tun_Assistantti = "";
 
 			//varusteet
-			_Tun_Perustavarat = "";
+			_Tun_Perustavarat = "medic";
 			_Tun_Kiikari = "";
-			_Tun_Medikaali = "";
+			_Tun_Medikaali = "medic";
 		};
 
 		Case toLower "CLS": { //Ryhmän medikki
@@ -914,9 +914,9 @@ if (_unit isKindof "Man") then {
 			_Tun_Assistantti = "";
 
 			//varusteet
-			_Tun_Perustavarat = "";
+			_Tun_Perustavarat = "medic";
 			_Tun_Kiikari = "";
-			_Tun_Medikaali = "";
+			_Tun_Medikaali = "cls";
 		};
 
 		/////////////////////
@@ -928,11 +928,11 @@ if (_unit isKindof "Man") then {
 			_Tun_Kypara = "";
 			_Tun_Puku = "";
 			_Tun_Liivi = "";
-			_Tun_Reppu = "";
+			_Tun_Reppu = "AT";
 
 			//aseet
 			_Tun_Aseistus = "";
-			_Tun_Sinko = "";
+			_Tun_Sinko = "AT";
 			_Tun_Assistantti = "";
 
 			//varusteet
@@ -946,16 +946,16 @@ if (_unit isKindof "Man") then {
 			_Tun_Kypara = "";
 			_Tun_Puku = "";
 			_Tun_Liivi = "";
-			_Tun_Reppu = "";
+			_Tun_Reppu = "AT";
 
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "AT";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -968,7 +968,7 @@ if (_unit isKindof "Man") then {
 
 			//aseet
 			_Tun_Aseistus = "";
-			_Tun_Sinko = "";
+			_Tun_Sinko = "HAT";
 			_Tun_Assistantti = "";
 
 			//varusteet
@@ -987,11 +987,11 @@ if (_unit isKindof "Man") then {
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "HAT";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 			};
 
@@ -1004,7 +1004,7 @@ if (_unit isKindof "Man") then {
 
 			//aseet
 			_Tun_Aseistus = "";
-			_Tun_Sinko = "";
+			_Tun_Sinko = "LAT";
 			_Tun_Assistantti = "";
 
 			//varusteet
@@ -1022,7 +1022,7 @@ if (_unit isKindof "Man") then {
 
 			//aseet
 			_Tun_Aseistus = "";
-			_Tun_Sinko = "";
+			_Tun_Sinko = "LAT1";
 			_Tun_Assistantti = "";
 
 			//varusteet
@@ -1040,7 +1040,7 @@ if (_unit isKindof "Man") then {
 
 			//aseet
 			_Tun_Aseistus = "";
-			_Tun_Sinko = "";
+			_Tun_Sinko = "AA";
 			_Tun_Assistantti = "";
 
 			//varusteet
@@ -1059,11 +1059,11 @@ if (_unit isKindof "Man") then {
 			//aseet
 			_Tun_Aseistus = "";
 			_Tun_Sinko = "";
-			_Tun_Assistantti = "";
+			_Tun_Assistantti = "AA";
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
@@ -1071,12 +1071,12 @@ if (_unit isKindof "Man") then {
 		//Ajoneuvo miehistöt//
 		//////////////////////
 
-		Case toLower "CrewL": { //Vaununjohtaja
+		Case toLower "CrewC": { //Vaununjohtaja
 			//Vaatteet
-			_Tun_Kypara = "";
-			_Tun_Puku = "";
-			_Tun_Liivi = "";
-			_Tun_Reppu = "";
+			_Tun_Kypara = "Crew";
+			_Tun_Puku = "Crew";
+			_Tun_Liivi = "Crew";
+			_Tun_Reppu = "Radio";
 
 			//aseet
 			_Tun_Aseistus = "";
@@ -1085,16 +1085,16 @@ if (_unit isKindof "Man") then {
 
 			//varusteet
 			_Tun_Perustavarat = "";
-			_Tun_Kiikari = "";
+			_Tun_Kiikari = "kiikari";
 			_Tun_Medikaali = "";
 		};
 
 		Case toLower "Crew": { //Vaunumiehistö
 			//Vaatteet
-			_Tun_Kypara = "";
-			_Tun_Puku = "";
-			_Tun_Liivi = "";
-			_Tun_Reppu = "";
+			_Tun_Kypara = "Crew";
+			_Tun_Puku = "Crew";
+			_Tun_Liivi = "Crew";
+			_Tun_Reppu = "Crew";
 
 			//aseet
 			_Tun_Aseistus = "";
@@ -1209,7 +1209,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "Mark";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -1227,7 +1227,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Reppu = "";
 
 			//aseet
-			_Tun_Aseistus = "";
+			_Tun_Aseistus = "Mark1";
 			_Tun_Sinko = "";
 			_Tun_Assistantti = "";
 
@@ -1257,7 +1257,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Assistantti = "";
 
 			//varusteet
-			_Tun_Perustavarat = "";
+			_Tun_Perustavarat = "Engineer";
 			_Tun_Kiikari = "";
 			_Tun_Medikaali = "";
 		};
@@ -1277,7 +1277,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Assistantti = "";
 
 			//varusteet
-			_Tun_Perustavarat = "";
+			_Tun_Perustavarat = "Explosive";
 			_Tun_Kiikari = "";
 			_Tun_Medikaali = "";
 		};
@@ -1297,7 +1297,7 @@ if (_unit isKindof "Man") then {
 			_Tun_Assistantti = "";
 
 			//varusteet
-			_Tun_Perustavarat = "";
+			_Tun_Perustavarat = "Breach";
 			_Tun_Kiikari = "";
 			_Tun_Medikaali = "";
 		};
@@ -1330,8 +1330,8 @@ if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship
 	Switch toLower(_type) do {
 
 		Case toLower "Auto": { //perus
-			_unit addMagazineCargoGlobal ["rhs_30Rnd_545x39_7N10_AK", 6];
-			_unit addMagazineCargoGlobal ["rhs_100Rnd_762x54mmR",2];
+			_unit addMagazineCargoGlobal ["", 6];
+			_unit addMagazineCargoGlobal ["",2];
 			_unit addItemCargoGlobal ["ACE_wirecutter",2];
 			_unit addItemCargoGlobal ["ACE_bodyBag",10];
 			_unit addItemCargoGlobal ["ACE_bloodIV",5];
@@ -1340,8 +1340,8 @@ if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship
 		};
 
 		Case toLower "Laatikko": { //perus
-			_unit addMagazineCargoGlobal ["rhs_30Rnd_545x39_7N10_AK", 6];
-			_unit addMagazineCargoGlobal ["rhs_100Rnd_762x54mmR",2];
+			_unit addMagazineCargoGlobal ["", 6];
+			_unit addMagazineCargoGlobal ["",2];
 			_unit addItemCargoGlobal ["ACE_wirecutter",2];
 			_unit addItemCargoGlobal ["ACE_bodyBag",10];
 			_unit addItemCargoGlobal ["ACE_bloodIV",5];
@@ -1349,8 +1349,8 @@ if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship
 		};
 
 		Case toLower "Rekka": { //perus
-			_unit addMagazineCargoGlobal ["rhs_30Rnd_545x39_7N10_AK", 6];
-			_unit addMagazineCargoGlobal ["rhs_100Rnd_762x54mmR",2];
+			_unit addMagazineCargoGlobal ["", 6];
+			_unit addMagazineCargoGlobal ["",2];
 			_unit addItemCargoGlobal ["ACE_wirecutter",2];
 			_unit addItemCargoGlobal ["ACE_bodyBag",10];
 			_unit addItemCargoGlobal ["ACE_bloodIV",5];
