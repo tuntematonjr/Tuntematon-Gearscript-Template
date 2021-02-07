@@ -6,7 +6,7 @@ Author:
     Tuntematon
 
 Muokattu
-	3.4.2020
+	7.2.2020
 ---------------------------------------------------------------------------- */
 //Muuta numeroa jos muokkaan scriptiä niin ettei vanhat enään toimi.
 #define COMPONENT gearscript
