@@ -102,7 +102,7 @@ _TUN_fnc_addBasicEquipment = { //PerusTavaroiden functio//
 	};
 
 	//Annetaan valitut tavarat
-	[_unit, _tavarat] Call _TUN_fnc_addmagazines;
+	[_unit, _tavarat] call _TUN_fnc_addmagazines;
 
 	Switch toLower (_kiikarit) do {
 		Case toLower "kiikari": {
@@ -146,7 +146,7 @@ _TUN_fnc_addMedicalSupplies = {
 		};
 	};
 
-	[_unit, _supplies] Call _TUN_fnc_addmagazines;
+	[_unit, _supplies] call _TUN_fnc_addmagazines;
 };
 
 
@@ -368,15 +368,15 @@ if (_Silencer) then {
 
 
 	if (count _weapons > 0) then {
-		[_unit, _weapons] Call _TUN_fnc_addweapons;
+		[_unit, _weapons] call _TUN_fnc_addweapons;
 	};
 
 	if (count _magazines > 0) then {
-		[_unit, _magazines] Call _TUN_fnc_addmagazines;
+		[_unit, _magazines] call _TUN_fnc_addmagazines;
 	};
 
 	if (count _weaponitems > 0) then {
-		[_unit, _weaponitems] Call _TUN_fnc_addWeaponItem;
+		[_unit, _weaponitems] call _TUN_fnc_addWeaponItem;
 	};
 };
 
@@ -1314,7 +1314,7 @@ if (_unit isKindof "Man") then {
 	//Kutsutaan varustefunctiot yksikölle.
 	[_unit, _Tun_Kypara, _Tun_Puku, _Tun_Liivi, _Tun_Reppu] call _TUN_fnc_changeClothes;
 	[_unit, _Tun_Aseistus, _Tun_Sinko, _Tun_Assistantti] call _TUN_fnc_changeWeapons;
-	[_unit, _Tun_Medikaali] Call _TUN_fnc_addMedicalSupplies;
+	[_unit, _Tun_Medikaali] call _TUN_fnc_addMedicalSupplies;
 	[_unit, _Tun_Perustavarat, _Tun_Kiikari] call _TUN_fnc_addBasicEquipment;
 };
 
