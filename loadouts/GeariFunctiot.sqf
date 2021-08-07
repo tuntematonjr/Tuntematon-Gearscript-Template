@@ -47,10 +47,6 @@ if (_unit isKindof "Man") then {
 
 };
 
-/*if !(isDedicated) then {
-	//_unit disableAI "all";
-};*/
-
 if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship" || _unit isKindOf "Static" || _unit isKindOf "thing") then {
 	clearWeaponCargoglobal _unit;
 	clearItemCargoGlobal _unit;
@@ -61,7 +57,6 @@ if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship
 	_unit setVariable ["AFI_vehicle_gear", _OrbatinSide, true];
 	_unit setVehicleLock "UNLOCKED";
 };
-
 
 _TUN_fnc_addweapons = {
 
