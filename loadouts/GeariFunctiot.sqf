@@ -6,14 +6,14 @@ Author:
     Tuntematon
 
 Muokattu
-	7.2.2020
+	28.8.2021
 ---------------------------------------------------------------------------- */
 //Muuta numeroa jos muokkaan scriptiä niin ettei vanhat enään toimi.
 #define COMPONENT gearscript
 #define PREFIX Tun
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
-_GeariFunctiot_Versio = 6;
+_GeariFunctiot_Versio = 7;
 
 
 if (_unit isKindof "Man") then {
@@ -55,6 +55,7 @@ if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship
 	_unit disableTIEquipment !(_Thermalit);
 	_unit setVariable ["tf_side", _OrbatinSide, true];
 	_unit setVariable ["AFI_vehicle_gear", _OrbatinSide, true];
+	_unit setVariable ["Tun_startmarkers_vehicleSide", [east, west, resistance, civilian] select (["east", "west" , "guer", "civ"] find _OrbatinSide), true];
 	_unit setVehicleLock "UNLOCKED";
 };
 

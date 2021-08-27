@@ -12,8 +12,8 @@ Author:
     Alkuperäinen Bummeri
     Modifioinut Tuntematon
 Scipti Versio:
-    v2
-    12.11.2018
+    v2.1
+    28.8.2021
 ---------------------------------------------------------------------------- */
 params ["_type","_unit"];
 
@@ -25,12 +25,12 @@ private ["_OrbatinSide", "_Radioit", "_Nightvision", "_VaadittuFunctio_versio", 
 ////////ASETUKSET////////
 /////////////////////////
 //Vaadittava gearifunctio versio
-_VaadittuFunctio_versio = 6;
+_VaadittuFunctio_versio = 7;
 
 //Geariscriptin polku
 _gearscript_path = "loadouts\Tyhja.sqf";
 
-//Orbatin osapuoli "east", "west" , "guer"
+//Orbatin osapuoli "east", "west" , "guer", "civ"
 _OrbatinSide = "east";
 
 //Lyhyet radiot kaikille. true/false
