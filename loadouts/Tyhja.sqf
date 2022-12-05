@@ -103,6 +103,7 @@ _TUN_fnc_addBasicEquipment = { //PerusTavaroiden functio//
 	[_unit, _tavarat] call _TUN_fnc_addItems;
 
 	Switch (_kiikarit) do {
+		case "kiikarit";
 		case "kiikari": {
 			_unit addWeapon "Binocular";
 		};
@@ -477,8 +478,7 @@ _TUN_fnc_changeClothes = { //VAATEFUNCTIO//
 ////////////////
 //Repunvalinta//
 ////////////////
-	switch (_reppu) do
-	{
+	switch (_reppu) do {
 		case "radio": {
 
 		};
