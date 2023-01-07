@@ -6,7 +6,7 @@ Author:
     Tuntematon
 
 Muokattu
-	27.8.2022
+	7.1.2023
 ---------------------------------------------------------------------------- */
 #define MAP(ARR,CODE) ARR = ARR apply {CODE}
 
@@ -45,6 +45,7 @@ if (_unit isKindof "Man") then {
 		clearBackpackCargoglobal _unit;
 		_unit disableTIEquipment !(_Thermalit);
 		_unit setVariable ["tf_side", _OrbatinSide, true];
+		_unit setVariable ["Tun_startmarkers_vehicleSide", [east, west, resistance, civilian] select (["east", "west" , "guer", "civ"] find _OrbatinSide), true];	
 		_unit setVariable ["AFI_vehicle_gear", _OrbatinSide, true];
 		_unit setVehicleLock "UNLOCKED";
 	};
