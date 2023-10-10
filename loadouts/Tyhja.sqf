@@ -12,8 +12,7 @@ Author:
     Alkuperäinen Bummeri
     Modifioinut Tuntematon
 Scipti Versio:
-    v2.2
-    27.8.2022
+    10.10.2023
 ---------------------------------------------------------------------------- */
 params ["_type","_unit"];
 
