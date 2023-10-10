@@ -29,8 +29,8 @@ private _VaadittuFunctio_versio = 6;
 //Geariscriptin polku
 private _gearscript_path = "loadouts\msv.sqf";
 
-//Orbatin osapuoli "east", "west" , "guer"
-private _OrbatinSide = "east";
+//Orbatin osapuoli east, west, resistance, civilian. EI STRING!!
+private _OrbatinSide = east;
 
 //Lyhyet radiot kaikille. true/false
 private _Radioit = true;
@@ -62,7 +62,7 @@ _TUN_fnc_addBasicEquipment = { //PerusTavaroiden functio//
 	params ["_unit", ["_mode", ""], ["_kiikarit", ""]];
 	
 	//Perus tavarat kaikille
-	private _tavarat = [["ACE_EntrenchingTool",1], ["ACE_MapTools",1], ["HandGrenade",1], ["SmokeShell",2]];
+	private _tavarat = [["ACE_EntrenchingTool",1], ["ACE_MapTools",1], ["HandGrenade",1], ["SmokeShell",1]];
 
 	Switch (_mode) do {//!!!! caset pitää olla kaikki pienellä!!!!!
 

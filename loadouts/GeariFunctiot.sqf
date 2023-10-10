@@ -1,4 +1,4 @@
-	/* ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
 Description:
     Geariscirpti functiot
 
@@ -11,7 +11,6 @@ Muokattu
 #define MAP(ARR,CODE) ARR = ARR apply {CODE}
 
 private _isServer = isServer;
-
 
 if (_unit isKindof "Man") then {
 	_unit setVariable ["Tun_Respawn_Role",_type, true]; // Tun respawn gear variable
@@ -40,7 +39,6 @@ if (_unit isKindof "Man") then {
 		if (!isNil _description) then {
 			_unit setVariable ["displayName", _description, true];
 		};
-
 	};
 } else {
 	if (_unit isKindof "LandVehicle" || {_unit isKindof "Air"} || {_unit isKindOf "Ship"} || {_unit isKindOf "Static"} || {_unit isKindOf "thing"}) then {
