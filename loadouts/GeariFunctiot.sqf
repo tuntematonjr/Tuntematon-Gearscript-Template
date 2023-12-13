@@ -14,7 +14,7 @@ private _isServer = isServer;
 
 if (_unit isKindof "Man") then {
 	_unit setVariable ["Tun_Respawn_Role",_type, true]; // Tun respawn gear variable
-	_unit setVariable ["Tun_Respawn_GearPath",_gearscript_path, true]; // Tun respawn gearscript path
+	_unit setVariable ["Tun_Respawn_GearPath",_gearscriptPath, true]; // Tun respawn gearscript path
 	removeAllWeapons _unit;
 	removeUniform _unit;
     removeVest _unit;
@@ -27,8 +27,8 @@ if (_unit isKindof "Man") then {
 	_unit linkItem "itemCompass";
 	_unit linkItem "itemWatch";
 
-	if (_Radioit) then {_unit linkItem "TFAR_microdagr"; _unit linkItem "itemradio" } else {_unit removeweapon "itemradio"};
-	if (_Nightvision) then {_unit addweapon _item_NV} else {_unit addweapon "ACE_NVG_Gen4"; _unit removeweapon "ACE_NVG_Gen4"};
+	if (_enableRadios) then {_unit linkItem "TFAR_microdagr"; _unit linkItem "itemradio" } else {_unit removeweapon "itemradio"};
+	if (_enableNVGs) then {_unit addweapon _NVG_classname} else {_unit addweapon "ACE_NVG_Gen4"; _unit removeweapon "ACE_NVG_Gen4"};
 
 	if (isMultiplayer) then {
 		private _description = roleDescription _unit;
@@ -46,10 +46,10 @@ if (_unit isKindof "Man") then {
 		clearItemCargoGlobal _unit;
 		clearMagazineCargoglobal _unit;
 		clearBackpackCargoglobal _unit;
-		_unit disableTIEquipment !_Thermalit;
-		_unit setVariable ["tf_side", str _OrbatinSide, true];
-		_unit setVariable ["Tun_startmarkers_vehicleSide", _OrbatinSide, true];	
-		_unit setVariable ["AFI_vehicle_gear", str _OrbatinSide, true];
+		_unit disableTIEquipment !_enableThermals;
+		_unit setVariable ["tf_side", str _orbatSide, true];
+		_unit setVariable ["tunuti_startmarkers_vehicleSide", _orbatSide, true];	
+		_unit setVariable ["AFI_vehicle_gear", str _orbatSide, true];
 		_unit setVehicleLock "UNLOCKED";
 	};
 };
@@ -162,7 +162,6 @@ _TUN_fnc_addWeaponStuff = {
 			};
 		} forEach _weaponitems;
 	};
-
 };
 
 _TUN_fnc_addItems = {

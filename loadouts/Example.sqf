@@ -172,13 +172,22 @@ if (_enableSilencers) then {
 		//Rifles//
 		//////////
 
-		case "rif": { //Rifle 
+		case "rif": { //Rifle with optic (this is example and does not work)
+			_gun = selectRandom ["clasname","clasname"]; //If you want to have random gun, use this. If not, remove or comment this out
+			_gun = "className"; //If you dont want to use random weapon, you can use this to keep it more readable. But you can just put the classname to "_weapons append [_gun, "classname"];" and overwrite the _gun with the classname
+			_muzzlebrake = "classname";
+			_sight = "classname";
+			_grip = "classname";
+
+			_weapons append [_gun, "classname"]; // you can put multiple weapon classnames here, but remember that only one primary, secondary (lancher) and pistol. But there is seperate case for lanchers.
+			_magazines append [["magazine1",magazinecount],["rhs_30Rnd_545x39_AK_green",3]]; //Magazines [classname, magazinecount]
+			_weaponItems append [["classname","primary/handgun/secondary"],["_muzzlebrake","primary"],["_sight","primary"],["_sight","primary"]]; //Weapon attatchments [classname,which weapon slot] "primary/handgun/secondary"
+		};
+
+		case "rif1": { //Rifle (this is example and does not work)
 			_weapons append ["rhs_weap_m21a"];
 			_magazines append [["rhsgref_30rnd_556x45_m21",10],["rhsgref_30rnd_556x45_m21_t",4]];
 			_weaponItems append [["rhs_acc_pkas","primary"]];
-		};
-
-		case "rif1": { //Rifle 
 		};
 
 		case "rif2": { //Rifle
@@ -264,9 +273,9 @@ if (_enableSilencers) then {
 	switch (_launcherSelection) do {//!!!!every case must be in lowercaes!!!!!
 
 		case "at": { //AT = RPG7, SMAW, MAAWS (Heavy launcher)
-			// _weapons append ["rhs_weap_smaw_green"];
-			// _magazines append [["rhs_mag_smaw_HEAA",2],["rhs_mag_smaw_SR",2]];
-			// _weaponItems append [["rhs_weap_optic_smaw","secondary"]];
+			_weapons append ["rhs_weap_smaw_green"];
+			_magazines append [["rhs_mag_smaw_HEAA",2],["rhs_mag_smaw_SR",2]];
+			_weaponItems append [["rhs_weap_optic_smaw","secondary"]];
 		};
 
 		case "lat": { //light single use launchers (M72, RPG26, M136)
@@ -367,7 +376,7 @@ _TUN_fnc_changeClothes = {
 		};
 
 		default { //Default helmet given for everyone who has not set other case
-			//_unit addHeadgear selectRandom ["rhssaf_helmet_m97_digital", "rhssaf_helmet_m97_digital_black_ess", "rhssaf_helmet_m97_digital_black_ess_bare", "rhssaf_helmet_m97_veil_digital"];
+			_unit addHeadgear selectRandom ["rhssaf_helmet_m97_digital", "rhssaf_helmet_m97_digital_black_ess", "rhssaf_helmet_m97_digital_black_ess_bare", "rhssaf_helmet_m97_veil_digital"];
 		};
 	};
 
@@ -414,7 +423,7 @@ _TUN_fnc_changeClothes = {
 		};
 
 		default { //Default vest given for everyone who has not set other case
-			//_unit addVest "rhssaf_vest_md99_digital_rifleman";
+			_unit addVest "rhssaf_vest_md99_digital_rifleman";
 		};
 	};
 
@@ -449,7 +458,7 @@ _TUN_fnc_changeClothes = {
 		};
 
 		default { //Default uniform given for everyone who has not set other case
-			//_unit forceAddUniform "rhssaf_uniform_m10_digital";
+			_unit forceAddUniform "rhssaf_uniform_m10_digital";
 		};
 	};
 
@@ -483,7 +492,7 @@ _TUN_fnc_changeClothes = {
 		};
 
 		default { //Default backpack given for everyone who has not set other case
-			//_unit addBackpack "rhssaf_kitbag_digital";
+			_unit addBackpack "rhssaf_kitbag_digital";
 		};
 	};
 };

@@ -1,7 +1,7 @@
 
-	KaikkiAseet = [];
-	KaikkienLippaat = [];
-	KaikkiLisavarusteet = [];
+KaikkiAseet = [];
+KaikkienLippaat = [];
+KaikkiLisavarusteet = [];
 
 Tun_fnc_arraytolower = {
 	params ["_array"];
@@ -11,8 +11,6 @@ Tun_fnc_arraytolower = {
 	} forEach _array;
 	_newarray
 };
-
-
 
 TUN_fnc_Primary = {
 	_Lippaat = [];
@@ -59,10 +57,6 @@ TUN_fnc_Primary = {
 	PrimaryAse = formatText  ['%5_weapons append [%1];%4%6_magazines append %2;%4%7_weaponitems append %3;',str _ase, _Lippaat, _Lisavarusteet, toString [13,10], _EiAsetta, _EiLippaita, _EiVarusteita];
 	//copyToClipboard format  ['%5_weapons append [%1];%4%6_magazines append %2;%4%7_weaponitems append %3;',str _ase, _Lippaat, _Lisavarusteet, toString [13,10], _EiAsetta, _EiLippaita, _EiVarusteita];
 };
-
-
-
-
 
 TUN_fnc_Secondary = {
 	_Lippaat = [];
@@ -262,7 +256,7 @@ PrimaryAse, SecondaryAse, HandgunAse, toString [13,10],str headgear player, str 
 };
 
 {
-	_x addAction ["Kopioi gearit leikepöydälle", { [] spawn TUN_fnc_Kaikki; }];
+	_x addAction ["Copy gears to clipboard", { [] spawn TUN_fnc_Kaikki; }];
 } forEach allUnits;
 
 
