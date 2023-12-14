@@ -1,12 +1,12 @@
 /* ----------------------------------------------------------------------------
 Description:
-    Geariscirpti functiot
+	Geariscirpti functiot
 
 Author:
-    Tuntematon
+	Tuntematon
 
 Muokattu
-	7.1.2023
+	13.12.2023
 ---------------------------------------------------------------------------- */
 #define MAP(ARR,CODE) ARR = ARR apply {CODE}
 
@@ -17,10 +17,10 @@ if (_unit isKindof "Man") then {
 	_unit setVariable ["Tun_Respawn_GearPath",_gearscriptPath, true]; // Tun respawn gearscript path
 	removeAllWeapons _unit;
 	removeUniform _unit;
-    removeVest _unit;
-    removeBackpack _unit;
-    removeHeadgear _unit;
-    removeGoggles _unit;
+	removeVest _unit;
+	removeBackpack _unit;
+	removeHeadgear _unit;
+	removeGoggles _unit;
 	_unit removeweapon "ItemGPS";
 
 	_unit linkItem "itemMap";
