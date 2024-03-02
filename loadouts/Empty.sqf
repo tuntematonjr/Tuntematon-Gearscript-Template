@@ -7,7 +7,7 @@ Parameters:
 Returns:
     
 Examples:
-    ["sl", this] call compile preprocessFileLineNumbers "loadouts\Tyhja.sqf";
+    ["sl", this] call compile preprocessFileLineNumbers "loadouts\Empty.sqf";
 Author:
     Based on Bummeris version around 2015
     Modified by Tuntematon
@@ -24,7 +24,7 @@ _type = toLower _type; //Make sure that type is all lowers, due to removing all 
 ////////////////////////
 
 //Gearscript path
-private _gearscriptPath = "loadouts\Tyhja.sqf";
+private _gearscriptPath = "loadouts\Empty.sqf";
 
 //Orbat side east, west, resistance, civilian. Do not use string!!
 private _orbatSide = east;
@@ -58,46 +58,46 @@ _TUN_fnc_addBasicEquipment = { //Basic items
 	params ["_unit", ["_mode", ""], ["_binoculars", ""]];
 	
 	//These are defaulty given for everyone.
-	//Can be overwriten in the switch case using _tavarat = [...] instead of _tavarat append [...]
-	private _tavarat = [["ACE_EntrenchingTool",1], ["ACE_MapTools",1], ["HandGrenade",1], ["SmokeShell",1]];
+	//Can be overwriten in the switch case using _items = [...] instead of _items append [...]
+	private _items = [["ACE_EntrenchingTool",1], ["ACE_MapTools",1], ["HandGrenade",1], ["SmokeShell",1]];
 
 	switch (_mode) do {//!!!!every case must be in lowercaes!!!!!
 
 		case "leader": {
-			_tavarat append [["SmokeShellGreen",2], ["ace_microdagr",1]]; //These are additional things given in addition to basic items defined earlier
+			_items append [["SmokeShellGreen",2], ["ace_microdagr",1]]; //These are additional things given in addition to basic items defined earlier
 			//_unit linkItem "itemRadio"; //If radios for everyone is disabled, this is the way to give them to selected units.
 		};
 
 		case "varajohtaja": {
-			_tavarat append [["SmokeShellGreen",2]];
+			_items append [["SmokeShellGreen",2]];
 		};
 
 		case "kevyt": {
-			_tavarat = [["SmokeShell",1], ["ACE_MapTools",1]]; //This is to overwrite the default basic items
+			_items = [["SmokeShell",1], ["ACE_MapTools",1]]; //This is to overwrite the default basic items
 		};
 
 		case "engineer": {
-			_tavarat append [["SmokeShell",2],["ACE_DefusalKit",1],["ACE_Clacker",1],["ToolKit",1],["ACE_wirecutter",1],["DemoCharge_Remote_Mag",3],["SatchelCharge_Remote_Mag",0]];
+			_items append [["SmokeShell",2],["ACE_DefusalKit",1],["ACE_Clacker",1],["ToolKit",1],["ACE_wirecutter",1],["DemoCharge_Remote_Mag",3],["SatchelCharge_Remote_Mag",0]];
 		};
 
 		case "explosive": {
-			//_tavarat append [];
+			//_items append [];
 		};
 
 		case "breach": {
-			_tavarat append [["ACE_DefusalKit",1],["ACE_Clacker",1],["DemoCharge_Remote_Mag",2]];
+			_items append [["ACE_DefusalKit",1],["ACE_Clacker",1],["DemoCharge_Remote_Mag",2]];
 		};
 
 		case "medic": {
-			_tavarat = [["ACE_EntrenchingTool",1], ["ACE_MapTools",1], ["SmokeShell",6]];
+			_items = [["ACE_EntrenchingTool",1], ["ACE_MapTools",1], ["SmokeShell",6]];
 		};
 
 		default { //Default case where one could give more basic stuff what other cases does not need.
-			//_tavarat = [];
+			//_items = [];
 		};
 	};
 
-	[_unit, _tavarat] call _TUN_fnc_addItems;
+	[_unit, _items] call _TUN_fnc_addItems;
 
 	switch (_binoculars) do {//!!!!every case must be in lowercaes!!!!!
 		case "binoculars";

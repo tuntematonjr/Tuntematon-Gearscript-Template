@@ -136,7 +136,6 @@ TUN_fnc_Kaikki = {
 	SecondaryAse = nil;
 	HandgunAse = nil;
 
-
 	[] call TUN_fnc_Primary;
 	[] call TUN_fnc_Secondary;
 	[] call TUN_fnc_Handgun;
@@ -162,10 +161,6 @@ TUN_fnc_Kaikki = {
 
 	PistoolijaAse = formatText  ['%5_weapons append %1;%4%6_magazines append %2;%4%7_weaponitems append %3;',KaikkiAseet, KaikkienLippaat, KaikkiLisavarusteet, toString [13,10], _EiAsetta, _EiLippaita, _EiVarusteita];
 
-
-
-
-
 	_reppu = backpack player;
 	if ((count ("true" configClasses(configFile >> "CfgVehicles" >> _reppu >> "TransportMagazines")) > 0) || (count ("true" configClasses(configFile >> "CfgVehicles" >> _reppu >> "TransportItems")) > 0)) then
 	{
@@ -188,24 +183,24 @@ Kaikki = formatText ["/*PrimaryWeapon*/
 %10
 
 
-/*Kaikki lippaat*/
+/*All magazines*/
 %11
 
 
-/*Kypara & lasit*/
+/*Helmet & goggles*/
 _unit addHeadgear %5;
 _unit addGoggles %6;
 
 
-/*Liivi*/
+/*Vest*/
 _unit addVest %7;
 
 
-/*Puku*/
+/*Uniform*/
 _unit forceAddUniform %8;
 
 
-/*Reppu*/
+/*Backpack*/
 _unit addBackpack %9;
 ",
 PrimaryAse, SecondaryAse, HandgunAse, toString [13,10],str headgear player, str goggles player, str vest player, str uniform player, str backpack player, PistoolijaAse, _KaikkiLippaat];
@@ -228,28 +223,28 @@ copyToClipboard format ["/*PrimaryWeapon*/
 %10
 
 
-/*Kaikki lippaat*/
+/*All magazines*/
 %11
 
 
-/*kiikarit*/
+/*Binoculars*/
 %12
 
 
-/*Kypara & lasit*/
+/*Helmet & goggles*/
 _unit addHeadgear %5;
 _unit addGoggles %6;
 
 
-/*Liivi*/
+/*Vest*/
 _unit addVest %7;
 
 
-/*Puku*/
+/*Uniform*/
 _unit forceAddUniform %8;
 
 
-/*Reppu*/
+/*Backpack*/
 _unit addBackpack %9;
 ",
 PrimaryAse, SecondaryAse, HandgunAse, toString [13,10],str headgear player, str goggles player, str vest player, str uniform player, str _reppu, PistoolijaAse, _KaikkiLippaat, binocular player];
