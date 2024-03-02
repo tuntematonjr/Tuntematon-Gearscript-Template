@@ -11,8 +11,8 @@ Examples:
 Author:
     Based on Bummeris version around 2015
     Modified by Tuntematon
-Scipti Versio:
-    13.12.2023
+Edited
+	2.3.2024
 ---------------------------------------------------------------------------- */
 params ["_type","_unit"];
 
@@ -495,7 +495,7 @@ if (_unit isKindof "Man") then {
 		///////////
 		//Leaders//
 		///////////
-		
+
 		case "cl": { //Company leader
 			//Clothes
 			_Tun_Helmet = "leader"; // Put here the case name. Leave "", if you want to use default/empty

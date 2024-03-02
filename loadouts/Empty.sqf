@@ -11,8 +11,8 @@ Examples:
 Author:
     Based on Bummeris version around 2015
     Modified by Tuntematon
-Scipti Versio:
-    13.12.2023
+Edited
+	2.3.2024
 ---------------------------------------------------------------------------- */
 params ["_type","_unit"];
 

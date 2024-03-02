@@ -5,8 +5,8 @@ Description:
 Author:
 	Tuntematon
 
-Muokattu
-	13.12.2023
+Edited
+	2.3.2024
 ---------------------------------------------------------------------------- */
 #define MAP(ARR,CODE) ARR = ARR apply {CODE}
 
