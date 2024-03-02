@@ -198,7 +198,6 @@ if (_enableSilencers) then {
 
 		};
 
-
 		//////
 		//MG//
 		//////
@@ -222,7 +221,6 @@ if (_enableSilencers) then {
 		case "ar1": { //Light machinegun (M249, RPK, M27)
 
 		};
-
 
 		//////////////////
 		//Sniper & Marks//
@@ -266,9 +264,9 @@ if (_enableSilencers) then {
 		default {};
 	};
 
-//////////////////////
-//Launcher selection//
-//////////////////////
+	//////////////////////
+	//Launcher selection//
+	//////////////////////
 
 	switch (_launcherSelection) do {//!!!!every case must be in lowercaes!!!!!
 
@@ -297,11 +295,9 @@ if (_enableSilencers) then {
 		default {}; //Leave this empty
 	};
 
-
-/////////////
-//Assistans//
-/////////////
-
+	/////////////
+	//Assistans//
+	/////////////
 
 	switch (_assistantSelection) do {//!!!!every case must be in lowercaes!!!!! //These are for assistant
 
@@ -332,19 +328,13 @@ if (_enableSilencers) then {
 
 };
 
-
 _TUN_fnc_changeClothes = {
 	params ["_unit", ["_helmet", ""], ["_uniform", ""], ["_vest", ""], ["_backpack", ""]];
 
-	removeUniform _unit;
-    removeVest _unit;
-    removeBackpack _unit;
-    removeHeadgear _unit;
-    removeGoggles _unit;
+	////////////////////
+	//Helmet selection//
+	////////////////////
 
-////////////////////
-//Helmet selection//
-////////////////////
 	switch (_helmet) do {
 
 		case "leader": {
@@ -380,9 +370,9 @@ _TUN_fnc_changeClothes = {
 		};
 	};
 
-//////////////////
-//Vest selection//
-//////////////////
+	//////////////////
+	//Vest selection//
+	//////////////////
 
 	switch (_vest) do {
 
@@ -427,9 +417,9 @@ _TUN_fnc_changeClothes = {
 		};
 	};
 
-/////////////////////
-//Uniform selection//
-/////////////////////
+	/////////////////////
+	//Uniform selection//
+	/////////////////////
 
 	switch (_uniform) do {
 
@@ -462,9 +452,9 @@ _TUN_fnc_changeClothes = {
 		};
 	};
 
-//////////////////////
-//Backpack selection//
-//////////////////////
+	//////////////////////
+	//Backpack selection//
+	//////////////////////
 
 	switch (_backpack) do {
 		case "radio": {
@@ -505,7 +495,7 @@ if (_unit isKindof "Man") then {
 		///////////
 		//Leaders//
 		///////////
-
+		
 		case "cl": { //Company leader
 			//Clothes
 			_Tun_Helmet = "leader"; // Put here the case name. Leave "", if you want to use default/empty

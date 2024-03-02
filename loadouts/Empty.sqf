@@ -214,7 +214,6 @@ if (_enableSilencers) then {
 
 		};
 
-
 		//////////////////
 		//Sniper & Marks//
 		//////////////////
@@ -238,6 +237,7 @@ if (_enableSilencers) then {
 		//////////////
 		//Small arms//
 		//////////////
+
 		case "smg": { //Special leaders, vehicle crew, pilots etc
 
 		};
@@ -257,9 +257,9 @@ if (_enableSilencers) then {
 		default {};
 	};
 
-//////////////////////
-//Launcher selection//
-//////////////////////
+	//////////////////////
+	//Launcher selection//
+	//////////////////////
 
 	switch (_launcherSelection) do {//!!!!every case must be in lowercaes!!!!!
 
@@ -288,11 +288,9 @@ if (_enableSilencers) then {
 		default {}; //Leave this empty
 	};
 
-
-/////////////
-//Assistans//
-/////////////
-
+	/////////////
+	//Assistans//
+	/////////////
 
 	switch (_assistantSelection) do {//!!!!every case must be in lowercaes!!!!! //These are for assistant
 
@@ -320,18 +318,10 @@ if (_enableSilencers) then {
 	};
 
 	[_unit, _weapons, _magazines, _weaponItems] call _TUN_fnc_addWeaponStuff;
-
 };
-
 
 _TUN_fnc_changeClothes = {
 	params ["_unit", ["_helmet", ""], ["_uniform", ""], ["_vest", ""], ["_backpack", ""]];
-
-	removeUniform _unit;
-    removeVest _unit;
-    removeBackpack _unit;
-    removeHeadgear _unit;
-    removeGoggles _unit;
 
 ////////////////////
 //Helmet selection//
