@@ -7,12 +7,11 @@ Parameters:
 Returns:
     
 Examples:
-    ["sl", this] call compile preprocessFileLineNumbers "loadouts\Empty.sqf";
+    ["sl", this] call compile preprocessFileLineNumbers "loadouts\Example.sqf";
 Author:
-    Based on Bummeris version around 2015
-    Modified by Tuntematon
+    Tuntematon
 Edited
-	2.3.2024
+	21.04.2024
 ---------------------------------------------------------------------------- */
 params ["_type","_unit"];
 
@@ -124,12 +123,12 @@ _TUN_fnc_addMedicalSupplies = {
 	switch (_mode) do {//!!!!every case must be in lowercaes!!!!!
 
 		case "medic": {
-			_unit setVariable ["Ace_medical_medicClass", 1];//Makes sure that unit is medic
+			_unit setVariable ["Ace_medical_medicClass", 1, true];//Makes sure that unit is medic
 			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",10],["ACE_epinephrine",10],["ACE_adenosine",3],["ACE_splint",5],["ACE_surgicalKit",1],["ACE_bloodIV",8],["ACE_bloodIV_500",5],["ACE_tourniquet",4]];
 		};
 
 		default {
-			_unit setVariable ["Ace_medical_medicClass", 0];//Makes sure that unit is NOT medic
+			_unit setVariable ["Ace_medical_medicClass", 0, true];//Makes sure that unit is NOT medic
 			_supplies = [["ACE_packingBandage",7],["ACE_tourniquet",2],["ACE_morphine",1],["ACE_splint",1]];
 		};
 	};
@@ -962,6 +961,8 @@ if (_unit isKindof "Man") then {
 		//////////////////////
 
 		case "crewCommander": { //Tank commander
+			_unit setVariable ["ACE_IsEngineer",true,true]; //Make crew engineers, so they can repair
+			
 			//Clothes
 			_Tun_Helmet = "crew";
 			_Tun_Uniform = "crew";
@@ -980,6 +981,8 @@ if (_unit isKindof "Man") then {
 		};
 
 		case "crew": { //vehicle crew
+			_unit setVariable ["ACE_IsEngineer",true,true]; //Make crew engineers, so they can repair
+			
 			//Clothes
 			_Tun_Helmet = "crew";
 			_Tun_Uniform = "crew";
