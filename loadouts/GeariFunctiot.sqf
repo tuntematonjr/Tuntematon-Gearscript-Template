@@ -6,15 +6,15 @@ Author:
 	Tuntematon
 
 Edited
-	2.3.2024
+	4.8.2024
 ---------------------------------------------------------------------------- */
 #define MAP(ARR,CODE) ARR = ARR apply {CODE}
 
 private _isServer = isServer;
 
 if (_unit isKindof "Man") then {
-	_unit setVariable ["Tun_Respawn_Role",_type, true]; // Tun respawn gear variable
-	_unit setVariable ["Tun_Respawn_GearPath",_gearscriptPath, true]; // Tun respawn gearscript path
+	_unit setVariable ["tunres_respawn_Role",_type, true]; // Tun respawn gear variable
+	_unit setVariable ["tunres_respawn_GearPath",_gearscriptPath, true]; // Tun respawn gearscript path
 	removeAllWeapons _unit;  
 	removeAllContainers _unit; 
 	removeAllAssignedItems [_unit, true, true];
