@@ -12,7 +12,7 @@ Edited
 
 private _isServer = isServer;
 
-if (_unit isKindof "Man") then {
+if (_unit isKindOf "Man") then {
 	_unit setVariable ["tunres_respawn_Role",_type, true]; // Tun respawn gear variable
 	_unit setVariable ["tunres_respawn_GearPath",_gearscriptPath, true]; // Tun respawn gearscript path
 	removeAllWeapons _unit;  
@@ -42,11 +42,11 @@ if (_unit isKindof "Man") then {
 		};
 	};
 } else {
-	if (_unit isKindof "LandVehicle" || {_unit isKindof "Air"} || {_unit isKindOf "Ship"} || {_unit isKindOf "Static"} || {_unit isKindOf "thing"}) then {
-		clearWeaponCargoglobal _unit;
+	if (_unit isKindOf "LandVehicle" || {_unit isKindOf "Air"} || {_unit isKindOf "Ship"} || {_unit isKindOf "Static"} || {_unit isKindOf "thing"}) then {
+		clearWeaponCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
-		clearMagazineCargoglobal _unit;
-		clearBackpackCargoglobal _unit;
+		clearMagazineCargoGlobal _unit;
+		clearBackpackCargoGlobal _unit;
 		_unit disableTIEquipment !_enableThermals;
 		_unit setVariable ["tf_side", str _orbatSide, true];
 		_unit setVariable ["tunuti_startmarkers_vehicleSide", _orbatSide, true];	
@@ -61,13 +61,13 @@ _TUN_fnc_addWeaponStuff = {
 
 	params ["_unit","_weapons", "_magazines", "_weaponitems"];
 
-	if (_weapons isNotEqualto []) then {
+	if (_weapons isNotEqualTo []) then {
 		{
-			_unit addweapon _x;
-		} foreach _weapons;
+			_unit addWeapon _x;
+		} forEach _weapons;
 	};
 
-	if (_magazines isNotEqualto []) then {
+	if (_magazines isNotEqualTo []) then {
 		private _secondaryAmmo = [];
 		private _handgunAmmo = [];
 		private _primaryWeapon = primaryWeapon _unit;
@@ -140,10 +140,10 @@ _TUN_fnc_addWeaponStuff = {
 			} else {
 				[_unit, _items] call _TUN_fnc_addItems;
 			};
-		} foreach _magazines;
+		} forEach _magazines;
 	}; 
   
-	if (_weaponitems isNotEqualto []) then {
+	if (_weaponitems isNotEqualTo []) then {
 
 		{
 			private _item = _x select 0;

@@ -30,7 +30,7 @@ TUN_fnc_Primary = {
 			_haveGL = true;
 		};
 		if (_haveGL) exitWith { _kranaatit = [_kranaatit] call Tun_fnc_arraytolower; };
-	} forEach GetArray (configFile >> "CfgWeapons" >> (primaryWeapon player) >> "muzzles");
+	} forEach getArray (configFile >> "CfgWeapons" >> (primaryWeapon player) >> "muzzles");
 
 	_primaryAmmo = [primaryWeapon player] call CBA_fnc_compatibleMagazines;
 	_primaryAmmo = [_primaryAmmo] call Tun_fnc_arraytolower;
@@ -72,7 +72,7 @@ TUN_fnc_Secondary = {
 
 
 	{
-		if (tolower _x in _sopivatLippaat && !(_x in _LippaatLista) && !(_x == "ACE_PreloadedMissileDummy")) then {
+		if (toLower _x in _sopivatLippaat && !(_x in _LippaatLista) && !(_x == "ACE_PreloadedMissileDummy")) then {
 	 		_LippaatLista append [_x];
 	  		_Lippaat pushBack [_x,{_x in getArray (configFile >> "CFGWeapons" >> _ase >> "magazines")} count (magazines player + secondaryWeaponMagazine player)]
 	 	};
@@ -105,7 +105,7 @@ TUN_fnc_Handgun = {
 	if (_ase == "") then  {_ase = handgunWeapon player};
 
 	{
-		if (tolower _x in _sopivatLippaat && !(_x in _LippaatLista)) then {
+		if (toLower _x in _sopivatLippaat && !(_x in _LippaatLista)) then {
 	 		_LippaatLista append [_x];
 	  		_Lippaat pushBack [_x,{_x in getArray (configFile >> "CFGWeapons" >> _ase >> "magazines")} count (magazines player + handgunMagazine player)]
 	 	};

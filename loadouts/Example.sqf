@@ -15,7 +15,7 @@ Edited
 ---------------------------------------------------------------------------- */
 params ["_type","_unit"];
 
-if (!(local _unit)) exitwith {}; // Very important. Prevents script from running for non local units
+if (!(local _unit)) exitWith {}; // Very important. Prevents script from running for non local units
 _type = toLower _type; //Make sure that type is all lowers, due to removing all tolower checks for performance reasons
 
 ////////////////////////
@@ -487,7 +487,7 @@ _TUN_fnc_changeClothes = {
 };
 
 //Gear for infantry
-if (_unit isKindof "Man") then {
+if (_unit isKindOf "Man") then {
 	private ["_Tun_Helmet", "_Tun_Uniform", "_Tun_Vest", "_Tun_Backpack", "_Tun_Weapon", "_Tun_Launcher", "_Tun_BasicItems", "_Tun_Binoculars", "_Tun_Medical","_Tun_Assistant"];
 	switch (_type) do {
 
@@ -1223,7 +1223,7 @@ if (_unit isKindof "Man") then {
 	//Vehicles & Boxes//
 	////////////////////
 
-	if (_unit isKindof "LandVehicle" || _unit isKindof "Air" || _unit isKindOf "Ship" || _unit isKindOf "Static" || _unit isKindOf "thing") then {
+	if (_unit isKindOf "LandVehicle" || _unit isKindOf "Air" || _unit isKindOf "Ship" || _unit isKindOf "Static" || _unit isKindOf "thing") then {
 		switch (_type) do {
 
 			case "car": {
