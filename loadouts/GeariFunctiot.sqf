@@ -32,13 +32,21 @@ if (_unit isKindOf "Man") then {
 	};
 
 	if (isMultiplayer) then {
-		private _description = roleDescription _unit;
-		if (_description find "@" isNotEqualTo  -1) then {
-			_description = _description select [0,(_description find "@")];
-		};
-		
-		if (!isNil _description) then {
-			_unit setVariable ["displayName", _description, true];
+		private _group = group _unit;
+		if (_unit isEqualTo leader _group) then {
+			private _description = roleDescription _unit;
+			private _descriptionAtLocation = _description find "@";
+			if (_descriptionAtLocation isNotEqualTo -1) then {
+				INC(_descriptionAtLocation);//Skips @ character
+				private _groupID = _description select [_descriptionAtLocation];
+				_group setGroupIdGlobal [_groupID];
+
+				_description = _description select [0,(_description find "@")];
+			};
+
+			if (!isNil _description) then {
+				_unit setVariable ["displayName", _description, true];
+			};
 		};
 	};
 } else {
