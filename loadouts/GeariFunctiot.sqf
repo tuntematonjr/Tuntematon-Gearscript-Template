@@ -10,6 +10,11 @@ Edited
 ---------------------------------------------------------------------------- */
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
+#define GET_RADIOCODE	switch (_orbatSide) do {case west: {tf_west_radio_code};case east: {tf_east_radio_code};default {tf_independent_radio_code};}
+#define WAITCONDITIO	{_this params ["_unit","_orbatSide"];TFAR_core_SettingsInitialized && [_unit call TFAR_fnc_backpackLR] call TFAR_fnc_hasSettings}
+#define WAITCODE		{_this params ["_unit","_orbatSide"];[_unit call TFAR_fnc_backpackLR, GET_RADIOCODE] call TFAR_fnc_setLrRadioCode;}
+#define SET_RADIOCODE	if (!(tfar_radioCodesDisabled) && (!isNil {_unit call TFAR_fnc_backpackLR})) then {[WAITCONDITIO, WAITCODE, [_unit,_orbatSide]] call CBA_fnc_waitUntilAndExecute;} 
+
 private _isServer = isServer;
 
 if (_unit isKindOf "Man") then {

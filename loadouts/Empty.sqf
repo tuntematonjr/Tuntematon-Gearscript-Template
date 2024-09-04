@@ -476,6 +476,8 @@ _TUN_fnc_changeClothes = {
 			//_unit addBackpack "rhssaf_kitbag_digital";
 		};
 	};
+
+	SET_RADIOCODE; // Forces right radio codec to LR radio based on side set on _orbatSide
 };
 
 //Gear for infantry
