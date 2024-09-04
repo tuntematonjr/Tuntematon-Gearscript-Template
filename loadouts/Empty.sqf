@@ -177,7 +177,8 @@ if (_enableSilencers) then {
 			_weaponItems append [["rhs_acc_pkas","primary"]];
 		};
 
-		case "rif1": { //Rifle 
+		case "rif1": { //Rifle
+
 		};
 
 		case "rif2": { //Rifle
