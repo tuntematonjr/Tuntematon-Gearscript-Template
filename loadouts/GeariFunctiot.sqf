@@ -8,7 +8,7 @@ Author:
 Edited
 	4.9.2024
 ---------------------------------------------------------------------------- */
-#define MAP(ARR,CODE) ARR = ARR apply {CODE}
+#include "\x\cba\addons\main\script_macros_common.hpp"
 
 private _isServer = isServer;
 
