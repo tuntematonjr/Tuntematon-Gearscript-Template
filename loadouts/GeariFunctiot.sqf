@@ -6,7 +6,7 @@ Author:
 	Tuntematon
 
 Edited
-	4.8.2024
+	4.9.2024
 ---------------------------------------------------------------------------- */
 #define MAP(ARR,CODE) ARR = ARR apply {CODE}
 
