@@ -180,7 +180,7 @@ if (_enableSilencers) then {
 
 			_weapons append [_gun, "classname"]; // you can put multiple weapon classnames here, but remember that only one primary, secondary (lancher) and pistol. But there is seperate case for lanchers.
 			_magazines append [["magazine1",magazinecount],["rhs_30Rnd_545x39_AK_green",3]]; //Magazines [classname, magazinecount]
-			_weaponItems append [["classname","primary/handgun/secondary"],["_muzzlebrake","primary"],["_sight","primary"],["_sight","primary"]]; //Weapon attatchments [classname,which weapon slot] "primary/handgun/secondary"
+			_weaponItems append [["classname","primary/handgun/secondary"],[_muzzlebrake,"primary"],[_sight,"primary"],[_sight,"primary"]]; //Weapon attatchments [classname,which weapon slot] "primary/handgun/secondary"
 		};
 
 		case "rif1": { //Rifle (this is example and does not work)
