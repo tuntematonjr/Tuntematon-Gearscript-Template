@@ -6,7 +6,7 @@ Author:
 	Tuntematon
 
 Edited
-	4.9.2024
+	8.10.2024
 ---------------------------------------------------------------------------- */
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
@@ -44,8 +44,10 @@ if (_unit isKindOf "Man") then {
 			if (_descriptionAtLocation isNotEqualTo -1) then {
 				INC(_descriptionAtLocation);//Skips @ character
 				private _groupID = _description select [_descriptionAtLocation];
-				_group setGroupIdGlobal [_groupID];
-
+				private _currentID = groupId _group;
+				if (_currentID isNotEqualTo _groupID) then {
+					_group setGroupIdGlobal [_groupID];
+				};
 				_description = _description select [0,(_description find "@")];
 			};
 
