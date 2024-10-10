@@ -13,7 +13,6 @@ Author:
 Edited
 	8.10.2024
 ---------------------------------------------------------------------------- */
-privateAll;
 params ["_type","_unit"];
 
 if (!(local _unit)) exitWith {}; // Very important. Prevents script from running for non local units
@@ -55,7 +54,6 @@ private _NVG_classname = "ACE_NVG_Gen4";
 ////////////////////////
 
 _TUN_fnc_addBasicEquipment = { //Basic items
-	privateAll;
 	params ["_unit", ["_mode", ""], ["_binoculars", ""]];
 	
 	//These are defaulty given for everyone.
@@ -119,7 +117,6 @@ _TUN_fnc_addBasicEquipment = { //Basic items
 };
 
 _TUN_fnc_addMedicalSupplies = {
-	privateAll;
 	params ["_unit", ["_mode", " "]];
 
 	switch (_mode) do {//!!!!every case must be in lowercaes!!!!!
@@ -139,11 +136,14 @@ _TUN_fnc_addMedicalSupplies = {
 };
 
 _TUN_fnc_changeWeapons = {
-	privateAll;
 	params ["_unit",["_weaponSelection", ""],["_launcherSelection", ""],["_assistantSelection", ""]];
 	private _weapons = [];
 	private _magazines = [];
 	private _weaponItems = [];
+	private _muzzlebrake = "";
+	private _gun = "";
+	private _sight = "";
+	private _grip = "";
 
 ///////////////////
 //Primary weapons//
@@ -327,7 +327,6 @@ if (_enableSilencers) then {
 };
 
 _TUN_fnc_changeClothes = {
-	privateAll;
 	params ["_unit", ["_helmet", ""], ["_uniform", ""], ["_vest", ""], ["_backpack", ""]];
 
 	////////////////////
@@ -490,8 +489,7 @@ _TUN_fnc_changeClothes = {
 
 //Gear for infantry
 if (_unit isKindOf "Man") then {
-	privateAll;
-	import ["_type", "_TUN_fnc_changeClothes", "_TUN_fnc_changeWeapons", "_TUN_fnc_addMedicalSupplies","_TUN_fnc_addBasicEquipment"];
+	private ["_Tun_Helmet", "_Tun_Uniform", "_Tun_Vest", "_Tun_Backpack", "_Tun_Weapon", "_Tun_Launcher", "_Tun_BasicItems", "_Tun_Binoculars", "_Tun_Medical","_Tun_Assistant"];
 	switch (_type) do {
 
 		///////////
@@ -968,11 +966,11 @@ if (_unit isKindOf "Man") then {
 			_Tun_Medical = "";
 		};
 
-		//////////////////////
-		//Ajoneuvo miehistöt//
-		//////////////////////
+		/////////////////
+		//Vehicle Crews//
+		/////////////////
 
-		case "crewCommander": { //Tank commander
+		case "crewcommander": { //Tank commander
 			_unit setVariable ["ACE_IsEngineer",true,true]; //Make crew engineers, so they can repair
 			
 			//Clothes
