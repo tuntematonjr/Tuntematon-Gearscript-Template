@@ -118,7 +118,7 @@ _TUN_fnc_addBasicEquipment = { //Basic items
 
 _TUN_fnc_addMedicalSupplies = {
 	params ["_unit", ["_mode", " "]];
-
+	private "_supplies";
 	switch (_mode) do {//!!!!every case must be in lowercaes!!!!!
 
 		case "medic": {
