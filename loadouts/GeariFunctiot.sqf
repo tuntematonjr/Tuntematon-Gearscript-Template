@@ -8,6 +8,8 @@ Author:
 Edited
 	8.12.2024
 ---------------------------------------------------------------------------- */
+#define PREFIX tun
+#define COMPONENT gearscript
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
 #define GET_RADIOCODE	switch (_orbatSide) do {case west: {tf_west_radio_code};case east: {tf_east_radio_code};default {tf_independent_radio_code};}
@@ -26,7 +28,7 @@ if (!isMultiplayer) then {
 		ERROR_MSG(_text);
 	};	
 	if (!IS_SIDE(_orbatSide)) then {
-		private _text = "_orbatSide is not side: " + _orbatSide;
+		private _text = "_orbatSide is not side! Must be east, west, resistance or civilian";
 		ERROR_MSG(_text);
 	};
 };
