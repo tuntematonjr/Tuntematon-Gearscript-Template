@@ -1254,3 +1254,5 @@ if (_unit isKindOf "Man") then {
 		};
 	};
 };
+
+ENDOFGEARSCRIPT; //Do not remove

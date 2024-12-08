@@ -6,7 +6,7 @@ Author:
 	Tuntematon
 
 Edited
-	8.10.2024
+	8.12.2024
 ---------------------------------------------------------------------------- */
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
@@ -15,7 +15,21 @@ Edited
 #define WAITCODE		{_this params ["_unit","_orbatSide"];[_unit call TFAR_fnc_backpackLR, GET_RADIOCODE] call TFAR_fnc_setLrRadioCode;}
 #define SET_RADIOCODE	if (!(tfar_radioCodesDisabled) && (!isNil {_unit call TFAR_fnc_backpackLR})) then {[WAITCONDITIO, WAITCODE, [_unit,_orbatSide]] call CBA_fnc_waitUntilAndExecute;} 
 
+//this should reduce JIPQUEYE
+#define ENDOFGEARSCRIPT	_unit setUnitLoadout (getUnitLoadout _unit)
+
 private _isServer = isServer;
+
+if (!isMultiplayer) then {
+	if !(fileExists _gearscriptPath) then {
+		private _text = "gearscript file " + _gearscriptPath + " does not exist!";
+		ERROR_MSG(_text);
+	};	
+	if (!IS_SIDE(_orbatSide)) then {
+		private _text = "_orbatSide is not side: " + _orbatSide;
+		ERROR_MSG(_text);
+	};
+};
 
 if (_unit isKindOf "Man") then {
 	_unit setVariable ["tunres_respawn_Role",_type, true]; // Tun respawn gear variable
@@ -42,13 +56,7 @@ if (_unit isKindOf "Man") then {
 			private _description = roleDescription _unit;
 			private _descriptionAtLocation = _description find "@";
 			if (_descriptionAtLocation isNotEqualTo -1) then {
-				INC(_descriptionAtLocation);//Skips @ character
-				private _groupID = _description select [_descriptionAtLocation];
-				private _currentID = groupId _group;
-				if (_currentID isNotEqualTo _groupID) then {
-					_group setGroupIdGlobal [_groupID];
-				};
-				_description = _description select [0,(_description find "@")];
+				_description = _description select [0,_descriptionAtLocation];
 			};
 
 			if (!isNil _description) then {
