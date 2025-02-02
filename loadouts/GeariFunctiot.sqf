@@ -80,7 +80,7 @@ if (_unit isKindOf "Man") then {
 	};
 };
 
-_TUN_fnc_addWeaponStuff = {
+private _TUN_fnc_addWeaponStuff = {
 	//Adds list of magazines and items
 	//Params [_unit,[[MagazineClassname,count],[MagazineClassname,count],...]] call _TUN_fnc_addmagazines;
 
@@ -163,7 +163,7 @@ _TUN_fnc_addWeaponStuff = {
 					};
 				};
 			} else {
-				[_unit, _items] call _TUN_fnc_addItems;
+				[_unit, [_items]] call _TUN_fnc_addItems;
 			};
 		} forEach _magazines;
 	}; 
@@ -190,7 +190,7 @@ _TUN_fnc_addWeaponStuff = {
 	};
 };
 
-_TUN_fnc_addItems = {
+private _TUN_fnc_addItems = {
 	params ["_unit","_items"];
 	{
 		private _item = toLower (_x select 0);
