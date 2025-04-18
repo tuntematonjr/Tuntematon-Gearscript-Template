@@ -67,11 +67,11 @@ _TUN_fnc_addBasicEquipment = { //Basic items
 			//_unit linkItem "itemRadio"; //If radios for everyone is disabled, this is the way to give them to selected units.
 		};
 
-		case "varajohtaja": {
+		case "2ic": {
 			_items append [["SmokeShellGreen",2]];
 		};
 
-		case "kevyt": {
+		case "light": {
 			_items = [["SmokeShell",1], ["ACE_MapTools",1]]; //This is to overwrite the default basic items
 		};
 
@@ -119,16 +119,17 @@ _TUN_fnc_addBasicEquipment = { //Basic items
 _TUN_fnc_addMedicalSupplies = {
 	params ["_unit", ["_mode", " "]];
 	private "_supplies";
+
 	switch (_mode) do {//!!!!every case must be in lowercaes!!!!!
 
 		case "medic": {
 			_unit setVariable ["Ace_medical_medicClass", 1, true];//Makes sure that unit is medic
-			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",10],["ACE_epinephrine",10],["ACE_adenosine",3],["ACE_splint",5],["ACE_surgicalKit",1],["ACE_bloodIV",8],["ACE_bloodIV_500",5],["ACE_tourniquet",4]];
+			_supplies = [["ACE_elasticBandage",22],["ACE_morphine",10],["ACE_painkillers",5],["ACE_epinephrine",10],["ACE_adenosine",3],["ACE_splint",5],["ACE_surgicalKit",1],["ACE_bloodIV",8],["ACE_bloodIV_500",5],["ACE_tourniquet",4]];
 		};
 
 		default {
 			_unit setVariable ["Ace_medical_medicClass", 0, true];//Makes sure that unit is NOT medic
-			_supplies = [["ACE_packingBandage",7],["ACE_tourniquet",2],["ACE_morphine",1],["ACE_splint",1]];
+			_supplies = [["ACE_packingBandage",7],["ACE_tourniquet",2],["ACE_painkillers",2],["ACE_epinephrine",1],["ACE_splint",1]];
 		};
 	};
 
